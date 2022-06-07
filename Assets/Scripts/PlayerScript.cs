@@ -12,6 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool _doubleJump;
     private bool _wallSlide;
+    private bool _turn;
 
     private Animator _animator;
     void Start()
@@ -20,6 +21,19 @@ public class PlayerScript : MonoBehaviour
         _animator = transform.GetChild(0).GetComponent<Animator>();
     }
 
+    void DoubleJump()
+    {
+
+        if (!_characterController.isGrounded && _doubleJump)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) && _doubleJump)
+            {
+                verticalVelocity = jumpForce;
+                _doubleJump = false;
+                _animator.SetTrigger("Jump");
+            }
+        }
+    }
 
     void Update()
     {
@@ -33,25 +47,31 @@ public class PlayerScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 verticalVelocity = jumpForce;
-                //_doubleJump=true;
+                _doubleJump=true;
                 _animator.SetTrigger("Jump");
+            }
+
+            if (_turn)
+            {
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
+                _turn = false;
+                print("1");
             }
         }
         if (!_wallSlide)
         {
             gravity = 30;
-            verticalVelocity -= gravity * Time.deltaTime;
-            /* if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0) && _doubleJump)
-             {
-                 verticalVelocity = jumpForce + 15;
-                 _doubleJump = false;
-             }       */
+            verticalVelocity -= gravity * Time.deltaTime;         
+
         }
         else
         {
             gravity = 15;
             verticalVelocity -= gravity * 0.09f * Time.deltaTime;
+           
         }
+        DoubleJump();
+
 
         _animator.SetBool("WallSlide", _wallSlide);
         _animator.SetBool("Grounded", _characterController.isGrounded);
@@ -83,6 +103,15 @@ public class PlayerScript : MonoBehaviour
                 }
 
             }
+        }
+        else
+        {
+            if (transform.forward != hit.collider.transform.forward && hit.collider.tag == "Ground" && !_turn)
+            {
+                _turn = true;
+                print("2");
+            }
+
         }
     }
 
