@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool _doubleJump;
     private bool _wallSlide;
-    private bool _turn;
+    private bool _turn,_freeFall;
 
     private Animator _animator;
     void Start()
@@ -35,6 +35,8 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    
+
     void Update()
     {
         _move = Vector3.zero;
@@ -43,7 +45,7 @@ public class PlayerScript : MonoBehaviour
         if (_characterController.isGrounded)
         {
             _wallSlide = false;
-            //verticalVelocity = 0;
+            verticalVelocity = 0;
             if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
             {
                 verticalVelocity = jumpForce;
@@ -55,25 +57,25 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
                 _turn = false;
-                print("1");
+              
             }
         }
         if (!_wallSlide)
         {
             gravity = 30;
-            verticalVelocity -= gravity * Time.deltaTime;         
+            verticalVelocity -= gravity * Time.deltaTime;
+           
 
         }
         else
         {
             gravity = 15;
-            verticalVelocity -= gravity * 0.09f * Time.deltaTime;
+            verticalVelocity -= gravity * Time.deltaTime;
            
         }
         DoubleJump();
 
-
-        _animator.SetBool("WallSlide", _wallSlide);
+       // _animator.SetBool("WallSlide", _wallSlide);
         _animator.SetBool("Grounded", _characterController.isGrounded);
 
         _move.Normalize();
@@ -91,7 +93,9 @@ public class PlayerScript : MonoBehaviour
         {
             if (hit.collider.tag == "Wall")
             {
-                if (verticalVelocity < 0)
+
+                _animator.SetBool("WallSlide",true);
+               if (verticalVelocity <0)
                     _wallSlide = true;
 
                 if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
@@ -101,15 +105,18 @@ public class PlayerScript : MonoBehaviour
                     _wallSlide = false;
                     _animator.SetTrigger("Jump");
                 }
-
+                print("2");
             }
         }
         else
         {
-            if (transform.forward != hit.collider.transform.forward && hit.collider.tag == "Ground" && !_turn)
+            _animator.SetBool("WallSlide", false);
+            _wallSlide = false;
+            if (transform.forward != hit.collider.transform.up && hit.collider.tag == "Ground" && !_turn)
             {
                 _turn = true;
-                print("2");
+               
+             
             }
 
         }
