@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         sortList[0].rank = 3;
         sortList[1].rank = 2;
         sortList[2].rank = 1;
+       
 
     }
 }

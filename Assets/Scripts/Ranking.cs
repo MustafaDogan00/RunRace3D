@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ranking : MonoBehaviour
 {
+    
     public int lapCount, currentCheckp=1,rank;
 
     private Vector3 _checkPoint;
@@ -12,6 +13,7 @@ public class Ranking : MonoBehaviour
    
     void Start()
     {
+       
         currentCheckp = 1;
         _checkPoint = GameObject.Find("Checkpoint" + currentCheckp).transform.position;
     }
