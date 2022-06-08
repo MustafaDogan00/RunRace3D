@@ -75,7 +75,7 @@ public class PlayerScript : MonoBehaviour
         }
         DoubleJump();
 
-       // _animator.SetBool("WallSlide", _wallSlide);
+        _animator.SetBool("WallSlide", _wallSlide);
         _animator.SetBool("Grounded", _characterController.isGrounded);
 
         _move.Normalize();
@@ -87,14 +87,13 @@ public class PlayerScript : MonoBehaviour
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-
-
+       
         if (!_characterController.isGrounded)
         {
             if (hit.collider.tag == "Wall")
             {
 
-                _animator.SetBool("WallSlide",true);
+                //_animator.SetBool("WallSlide",true);
                if (verticalVelocity <0)
                     _wallSlide = true;
 
@@ -105,20 +104,25 @@ public class PlayerScript : MonoBehaviour
                     _wallSlide = false;
                     _animator.SetTrigger("Jump");
                 }
-                print("2");
+              
             }
+           
         }
         else
         {
-            _animator.SetBool("WallSlide", false);
+      
             _wallSlide = false;
-            if (transform.forward != hit.collider.transform.up && hit.collider.tag == "Ground" && !_turn)
-            {
-                _turn = true;
-               
-             
-            }
 
+        }
+        if (hit.collider.tag == "Slide" && _characterController.isGrounded)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
+            verticalVelocity = jumpForce;
+
+        }
+        else if (hit.collider.tag == "Slide")
+        {
+            _wallSlide = true;
         }
     }
 

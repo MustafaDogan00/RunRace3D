@@ -97,6 +97,7 @@ public class AIScript : MonoBehaviour
         }
 
         _jump = true;
+        _wallSlide=false;
 
     }
 
@@ -105,13 +106,22 @@ public class AIScript : MonoBehaviour
         if (hit.collider.tag=="Wall")
         {
             if (_jump)
-            { StartCoroutine(LateJump(0.1f)); }
+            { StartCoroutine(LateJump(Random.Range(0.1f,0.3f))); }
             if (verticalVelocity<0)
             {
                 _wallSlide = true;
             }
         }
-        //_wallSlide=false;
+        if (hit.collider.tag == "Slide" && _characterController.isGrounded)
+        {
+            transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
+            verticalVelocity = jumpForce;
+
+        }
+        else if(hit.collider.tag == "Slide")
+        {
+            _wallSlide=true;
+        }
     }
 
 
