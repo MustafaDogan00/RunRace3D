@@ -29,7 +29,7 @@ public class UI : MonoBehaviour
 
      public void ReloadButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void NextLevelButton()
@@ -37,6 +37,10 @@ public class UI : MonoBehaviour
     
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     
+    }
+    public void ExitButton()
+    {
+        SceneManager.LoadScene(0);
     }
 
 
