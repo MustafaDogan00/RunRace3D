@@ -55,7 +55,7 @@ public class PlayerScript : MonoBehaviour
             _characterController.Move(new Vector3(0, _move.y * Time.deltaTime, 0));
             if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
             {
-                _animator.SetBool("Dance", true);
+                _animator.SetTrigger("Dance" );
                 transform.eulerAngles = Vector3.up * 180;
             }
 
