@@ -72,9 +72,14 @@ public class GameManager : MonoBehaviour
                 break;
             case 1:
                 sortList[0].rank = 1;
-
+              
                 _rankingScript.a = sortList[0].name;
                 crown.gameObject.transform.SetParent(sortList[0].gameObject.transform);
+                if (sortList[0].name=="Player")
+                {
+                    UI.Instance.NextLevel();
+                }
+               
                 if (firstPlace=="")
                 {
                     firstPlace = sortList[0].name;
@@ -83,10 +88,10 @@ public class GameManager : MonoBehaviour
 
 
         }
-     
-        if (pass >= ((float)runners.Length+9)/2 )
-        {
-            pass = 4;
+
+        if (pass >= ((float)runners.Length)/2)
+        { 
+            pass = 0;
             sortList = sortList.OrderBy(x => x.counter).ToList();
 
             foreach (Ranking rs in sortList)
@@ -94,9 +99,10 @@ public class GameManager : MonoBehaviour
 
                 if (rs.rank == sortList.Count)
                 {
+                    print(rs.gameObject.name);
                     if (rs.gameObject.name=="Player")
                     {
-                        //
+                        UI.Instance.Reload();                   
                     }
                     if (thirdPlace == "")
                         thirdPlace = rs.gameObject.name;
@@ -106,6 +112,7 @@ public class GameManager : MonoBehaviour
                      rs.gameObject.SetActive(false);
                 }
             }
+           
             runners = GameObject.FindGameObjectsWithTag("Runners");
             sortList.Clear();
             for (int i = 0; i < runners.Length; i++)
