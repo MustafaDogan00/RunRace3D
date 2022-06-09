@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance; 
 
     private GameObject[] runners;
+    public GameObject crown;
 
     public int pass;
 
@@ -16,12 +17,15 @@ public class GameManager : MonoBehaviour
     public bool finish;
 
     List<Ranking> sortList=new List<Ranking>();
+
+    private InGameUI _rankingScript;
    
 
     private void Awake()
     {
         Instance = this;
         runners = GameObject.FindGameObjectsWithTag("Runners");
+        _rankingScript=GetComponent<InGameUI>();
     }
     void Start()
     {
@@ -41,8 +45,7 @@ public class GameManager : MonoBehaviour
     }
 
     void CalculatingRank()
-    {
-        Debug.Log(pass);
+    {     
         sortList=sortList.OrderBy(x => x.counter).ToList();
         switch(sortList.Count)
         {
@@ -50,13 +53,28 @@ public class GameManager : MonoBehaviour
                 sortList[0].rank = 3;
                 sortList[1].rank = 2;
                 sortList[2].rank = 1;
+
+                _rankingScript.a = sortList[2].name;
+                _rankingScript.b= sortList[1].name;
+                _rankingScript.c= sortList[0].name;
+                crown.gameObject.transform.SetParent(sortList[2].gameObject.transform);
+
                 break;
             case 2:
                 sortList[0].rank = 2;
                 sortList[1].rank = 1;
+
+                _rankingScript.a=sortList[1].name;
+                _rankingScript.b=sortList[0].name;
+                crown.gameObject.transform.SetParent(sortList[1].gameObject.transform);
+
+
                 break;
             case 1:
                 sortList[0].rank = 1;
+
+                _rankingScript.a = sortList[0].name;
+                crown.gameObject.transform.SetParent(sortList[0].gameObject.transform);
                 if (firstPlace=="")
                 {
                     firstPlace = sortList[0].name;
@@ -66,9 +84,9 @@ public class GameManager : MonoBehaviour
 
         }
      
-        if (pass >= ((float)runners.Length+4)/2 )
+        if (pass >= ((float)runners.Length+9)/2 )
         {
-            pass = 0;
+            pass = 4;
             sortList = sortList.OrderBy(x => x.counter).ToList();
 
             foreach (Ranking rs in sortList)
@@ -102,6 +120,6 @@ public class GameManager : MonoBehaviour
             }
 
         }
-
+       
     }
 }

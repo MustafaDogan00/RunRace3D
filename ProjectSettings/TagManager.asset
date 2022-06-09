@@ -9,6 +9,7 @@ TagManager:
   - Slide
   - CheckPoint
   - Runners
+  - Text
   layers:
   - Default
   - TransparentFX

@@ -20,7 +20,7 @@ public class CameraFollow : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position,new Vector3(_player.position.x+offset.x, _player.position.y + offset.y, _player.position.z + offset.z),50*Time.deltaTime);
         if (GameManager.Instance.finish)
         {
-            offset = new Vector3(5, 9, -40);
+            offset = new Vector3(5, 9, -30);
         }
     }
 }
