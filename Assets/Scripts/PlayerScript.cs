@@ -39,6 +39,29 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.finish)
+        {
+            _move = Vector3.zero;
+
+            if (!_characterController.isGrounded)
+            {
+                verticalVelocity -= gravity * Time.deltaTime;
+            }
+            else
+            {
+                verticalVelocity = 0;
+            }
+            _move.y = verticalVelocity;
+            _characterController.Move(new Vector3(0, _move.y * Time.deltaTime, 0));
+            if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
+            {
+                _animator.SetBool("Dance", true);
+                transform.eulerAngles = Vector3.up * 180;
+            }
+
+
+            return;
+        }
         _move = Vector3.zero;
         _move = transform.forward;
 

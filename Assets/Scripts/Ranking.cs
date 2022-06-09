@@ -39,8 +39,8 @@ public class Ranking : MonoBehaviour
         }
         if (other.tag == "Finish") 
         {
-            lapCount++;
-            currentCheckp = 1;
+            lapCount+=1;
+            GameManager.Instance.pass+=1;
         }
     }
 }
