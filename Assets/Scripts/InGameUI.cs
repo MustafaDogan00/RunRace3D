@@ -16,6 +16,6 @@ public class InGameUI : MonoBehaviour
         myText[0].text = a;
         myText[1].text = b;
         myText[2].text = c;
-        myImage.color = Color.red;
+      
     }
 }

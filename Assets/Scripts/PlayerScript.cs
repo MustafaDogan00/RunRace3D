@@ -62,6 +62,8 @@ public class PlayerScript : MonoBehaviour
 
             return;
         }
+        if (!GameManager.Instance.start)
+        { return; }
         _move = Vector3.zero;
         _move = transform.forward;
 

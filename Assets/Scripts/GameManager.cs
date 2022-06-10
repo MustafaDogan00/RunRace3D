@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,18 +15,18 @@ public class GameManager : MonoBehaviour
 
     public string firstPlace, secondPlace,thirdPlace;
 
-    public bool finish;
+    public bool finish,start;
 
     List<Ranking> sortList=new List<Ranking>();
 
     private InGameUI _rankingScript;
-   
 
     private void Awake()
     {
         Instance = this;
         runners = GameObject.FindGameObjectsWithTag("Runners");
         _rankingScript=GetComponent<InGameUI>();
+       
     }
     void Start()
     {
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
 
                 _rankingScript.a=sortList[1].name;
                 _rankingScript.b=sortList[0].name;
+                _rankingScript.myImage.color=Color.red;
                 crown.gameObject.transform.SetParent(sortList[1].gameObject.transform);
 
 
@@ -129,4 +131,6 @@ public class GameManager : MonoBehaviour
         }
        
     }
+
+   
 }

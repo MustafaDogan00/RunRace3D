@@ -7,14 +7,37 @@ using UnityEngine.SceneManagement;
 public class UI : MonoBehaviour
 {
     public static UI Instance;
+
     public GameObject inGame, levelPanel,levelRPanel;
+
+    public Text timerText;
 
     void Awake()
     {
         Instance = this;
-        
-    }
+        StartCoroutine(Timer());
 
+    }
+    public IEnumerator Timer()
+    {
+        timerText.gameObject.SetActive(true);
+        timerText.text = 3.ToString();
+        yield return new WaitForSeconds(1);
+        timerText.text = 2.ToString();
+        timerText.color = Color.magenta;
+        yield return new WaitForSeconds(1);
+        timerText.text = 1.ToString();
+        timerText.color = Color.green;
+        yield return new WaitForSeconds(1);
+        timerText.text = "Go";
+        timerText.color = Color.cyan;
+        yield return new WaitForSeconds(.5f);
+        timerText.gameObject.SetActive(false);
+        GameManager.Instance.start = true;
+
+
+
+    }
     public void Reload()
     {
       inGame.SetActive(false);
