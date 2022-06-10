@@ -82,6 +82,7 @@ public class PlayerScript : MonoBehaviour
             {
                 transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
                 _turn = false;
+                print("euler");
               
             }
         }
@@ -135,7 +136,10 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-      
+          /*  if (transform.forward != hit.collider.transform.forward && hit.collider.tag == "Ground" && !_turn)
+            {
+                _turn = true;
+            }*/
             _wallSlide = false;
 
         }
