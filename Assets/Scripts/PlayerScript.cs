@@ -15,10 +15,17 @@ public class PlayerScript : MonoBehaviour
     private bool _turn,_freeFall;
 
     private Animator _animator;
+
+    public GameObject cube;
+    private GameObject _supriseGround;
+
+    private TrailRenderer _trailRenderer;
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
         _animator = transform.GetChild(0).GetComponent<Animator>();
+        _supriseGround = GameObject.FindGameObjectWithTag("SupriseGround");
+        _trailRenderer =gameObject.GetComponent<TrailRenderer>();
     }
 
     void DoubleJump()
@@ -110,7 +117,31 @@ public class PlayerScript : MonoBehaviour
         _characterController.Move(_move * Time.deltaTime);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag=="Coin")
+        {
+            Destroy(other.gameObject);
+            _supriseGround.gameObject.SetActive(false);
 
+        }
+        if (other.gameObject.tag == "Cube")
+        {
+            Destroy(cube);
+            StartCoroutine(SpeedBoost());
+        }
+    }
+   
+    IEnumerator SpeedBoost()
+    {
+        speed = 50;
+        _trailRenderer.enabled = true;
+        yield return new WaitForSeconds(8);
+        speed = 25;
+        _trailRenderer.enabled = false;
+
+
+    }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
        

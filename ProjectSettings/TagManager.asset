@@ -10,6 +10,9 @@ TagManager:
   - CheckPoint
   - Runners
   - Text
+  - Coin
+  - SupriseGround
+  - Cube
   layers:
   - Default
   - TransparentFX
