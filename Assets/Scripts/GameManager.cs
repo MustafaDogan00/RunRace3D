@@ -100,8 +100,7 @@ public class GameManager : MonoBehaviour
             {
 
                 if (rs.rank == sortList.Count)
-                {
-                    print(rs.gameObject.name);
+                {                 
                     if (rs.gameObject.name=="Player")
                     {
                         UI.Instance.Reload();                   
