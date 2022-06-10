@@ -2851,6 +2851,8 @@ MonoBehaviour:
   levelPanel: {fileID: 828278608}
   levelRPanel: {fileID: 504779343}
   timerText: {fileID: 811453360}
+  currentLevelText: {fileID: 573331783}
+  nextLevelText: {fileID: 52830165}
 --- !u!1 &759194786
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,6 +5414,8 @@ MonoBehaviour:
   jumpForce: 20
   gravity: 25
   verticalVelocity: 0
+  cube: {fileID: 0}
+  _impostorCube: {fileID: 0}
 --- !u!143 &1233359338
 CharacterController:
   m_ObjectHideFlags: 0
@@ -7883,7 +7887,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: NextLevelText
+  m_Text: Next Level
 --- !u!222 &1958141127
 CanvasRenderer:
   m_ObjectHideFlags: 0

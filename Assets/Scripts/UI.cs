@@ -12,12 +12,16 @@ public class UI : MonoBehaviour
 
     public Text timerText;
 
+    public Text currentLevelText;
+    public Text nextLevelText;
+
+
     void Awake()
     {
         Instance = this;
         StartCoroutine(Timer());
-
     }
+    
     public IEnumerator Timer()
     {
         timerText.gameObject.SetActive(true);
@@ -34,7 +38,6 @@ public class UI : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         timerText.gameObject.SetActive(false);
         GameManager.Instance.start = true;
-
 
 
     }
@@ -59,7 +62,9 @@ public class UI : MonoBehaviour
     { 
     
     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-    
+        currentLevelText.text = (SceneManager.GetActiveScene().buildIndex + 1).ToString();
+        nextLevelText.text = (SceneManager.GetActiveScene().buildIndex + 2).ToString();
+
     }
     public void ExitButton()
     {

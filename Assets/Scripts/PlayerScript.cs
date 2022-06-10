@@ -18,6 +18,7 @@ public class PlayerScript : MonoBehaviour
 
     public GameObject cube;
     private GameObject _supriseGround;
+    public GameObject _impostorCube;
 
     private TrailRenderer _trailRenderer;
     void Start()
@@ -26,6 +27,7 @@ public class PlayerScript : MonoBehaviour
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _supriseGround = GameObject.FindGameObjectWithTag("SupriseGround");
         _trailRenderer =gameObject.GetComponent<TrailRenderer>();
+      
     }
 
     void DoubleJump()
@@ -123,12 +125,17 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(other.gameObject);
             _supriseGround.gameObject.SetActive(false);
+            _impostorCube.gameObject.SetActive(true);
+            print("coin");
+
 
         }
-        if (other.gameObject.tag == "Cube")
+        if (other.gameObject.tag == "ImpostorCube")
         {
             Destroy(cube);
             StartCoroutine(SpeedBoost());
+            _impostorCube.gameObject.SetActive(false);
+            print("cube");
         }
     }
    

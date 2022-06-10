@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CalculatingRank();
+        
     }
 
     void CalculatingRank()
