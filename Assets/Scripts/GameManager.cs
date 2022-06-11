@@ -22,14 +22,14 @@ public class GameManager : MonoBehaviour
 
     private InGameUI _rankingScript;
 
-    private MainMenu mainMenu;
+
 
     private void Awake()
     {
         Instance = this;
         runners = GameObject.FindGameObjectsWithTag("Runners");
         _rankingScript=GetComponent<InGameUI>();
-        mainMenu=GetComponent<MainMenu>();
+       
        
     }
     void Start()
@@ -85,8 +85,6 @@ public class GameManager : MonoBehaviour
                 if (sortList[0].name== PlayerPrefs.GetString("PlayerName"))
                 {
                     UI.Instance.LevelPanel();
-
-                    print("levelPanelWorking");
                 }
                
                 if (firstPlace=="")

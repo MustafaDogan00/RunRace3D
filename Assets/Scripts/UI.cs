@@ -59,9 +59,6 @@ public class UI : MonoBehaviour
         texts[0].text = PlayerPrefs.GetInt("Level", 1)-1+"";
         texts[1].text = PlayerPrefs.GetInt("Level", 1).ToString();
         fill.sprite = orange;
-        print("levelPanelFunctionWorking");
-
-
     }
     public void LevelRPanel()
     {
