@@ -14,6 +14,8 @@ TagManager:
   - SupriseGround
   - Cube
   - ImpostorCube
+  - Bump
+  - LevelRPanel
   layers:
   - Default
   - TransparentFX

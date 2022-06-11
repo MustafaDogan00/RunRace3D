@@ -12,7 +12,7 @@ public class AIScript : MonoBehaviour
 
     private bool _doubleJump,_jump;
     private bool _wallSlide;
-    private bool _turn, _freeFall;
+    private bool _turn, _freeFall,_superJump;
 
     private Animator _animator;
 
@@ -20,7 +20,7 @@ public class AIScript : MonoBehaviour
     {
         _characterController = GetComponent<CharacterController>();
         _animator = transform.GetChild(0).GetComponent<Animator>();
-
+        gameObject.name =AIName.Name[Random.Range(0,AIName.Name.Length)];
     }
 
     
@@ -61,6 +61,12 @@ public class AIScript : MonoBehaviour
             _wallSlide = false;
             _jump = true;
             Raycasting();
+        }
+        if (_superJump)
+        {
+            _superJump = false;
+            verticalVelocity = jumpForce * 2.5f;
+            _animator.SetTrigger("Jump");
         }
 
         if (!_wallSlide)
@@ -147,6 +153,11 @@ public class AIScript : MonoBehaviour
         else if(hit.collider.tag == "Slide")
         {
             _wallSlide=true;
+        }
+        if (hit.collider.tag =="Bump")
+        {
+
+            _superJump = true;
         }
     }
 

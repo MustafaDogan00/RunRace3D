@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool _doubleJump;
     private bool _wallSlide;
-    private bool _turn,_freeFall;
+    private bool _turn,_freeFall,_superJump;
 
     private Animator _animator;
 
@@ -21,6 +21,10 @@ public class PlayerScript : MonoBehaviour
     public GameObject _impostorCube;
 
     private TrailRenderer _trailRenderer;
+    private void Awake()
+    {
+        gameObject.name = PlayerPrefs.GetString("PlayerName", "Player");
+    }
     void Start()
     {
         _characterController = GetComponent<CharacterController>();
@@ -94,6 +98,12 @@ public class PlayerScript : MonoBehaviour
                 print("euler");
               
             }
+        }
+        if (_superJump)
+        {
+            _superJump=false;
+            verticalVelocity = jumpForce * 2.5f;
+            _animator.SetTrigger("Jump");
         }
         if (!_wallSlide)
         {
@@ -174,6 +184,10 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
+            if (hit.collider.tag=="Bump")
+            {
+                _superJump = true;
+            }
           /*  if (transform.forward != hit.collider.transform.forward && hit.collider.tag == "Ground" && !_turn)
             {
                 _turn = true;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,11 +22,14 @@ public class GameManager : MonoBehaviour
 
     private InGameUI _rankingScript;
 
+    private MainMenu mainMenu;
+
     private void Awake()
     {
         Instance = this;
         runners = GameObject.FindGameObjectsWithTag("Runners");
         _rankingScript=GetComponent<InGameUI>();
+        mainMenu=GetComponent<MainMenu>();
        
     }
     void Start()
@@ -78,14 +82,17 @@ public class GameManager : MonoBehaviour
               
                 _rankingScript.a = sortList[0].name;
                 crown.gameObject.transform.SetParent(sortList[0].gameObject.transform);
-                if (sortList[0].name=="Player")
+                if (sortList[0].name== PlayerPrefs.GetString("PlayerName"))
                 {
-                    UI.Instance.NextLevel();
+                    UI.Instance.LevelPanel();
+
+                    print("levelPanelWorking");
                 }
                
                 if (firstPlace=="")
                 {
                     firstPlace = sortList[0].name;
+                  
                 }
                 break;
 
@@ -101,10 +108,11 @@ public class GameManager : MonoBehaviour
             {
 
                 if (rs.rank == sortList.Count)
-                {                 
-                    if (rs.gameObject.name=="Player")
+                {
+                    if (rs.gameObject.name == PlayerPrefs.GetString("PlayerName"))
                     {
-                        UI.Instance.Reload();                   
+                        UI.Instance.LevelRPanel();
+
                     }
                     if (thirdPlace == "")
                         thirdPlace = rs.gameObject.name;
@@ -126,6 +134,8 @@ public class GameManager : MonoBehaviour
             if (runners.Length<2)
             {
                 finish = true;
+                if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("Level"))
+                    PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level",1) + 1);  
             }
 
         }
