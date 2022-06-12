@@ -42,7 +42,7 @@ public class UI : MonoBehaviour
         timerText.text = 1.ToString();
         timerText.color = Color.green;
         yield return new WaitForSeconds(1);
-        timerText.text = "Go";
+        timerText.text = "GO";
         timerText.color = Color.cyan;
         yield return new WaitForSeconds(.5f);
         timerText.gameObject.SetActive(false);

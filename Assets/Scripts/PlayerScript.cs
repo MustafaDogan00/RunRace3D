@@ -115,7 +115,7 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            gravity = 15;
+            gravity = 20;
             verticalVelocity -= gravity * Time.deltaTime;          
         }
         DoubleJump();
