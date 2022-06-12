@@ -14,9 +14,9 @@ public class PlayerScript : MonoBehaviour
     private bool _wallSlide;
     private bool _turn,_superJump;
 
-    private Animator _animator,_cubeAnimator;
+    private Animator _animator,_cubeAnimator,_bumpAnimator;
 
-    public GameObject cube;
+    public GameObject cube,bump;
     private GameObject _supriseGround;
     public GameObject _impostorCube;
 
@@ -32,6 +32,7 @@ public class PlayerScript : MonoBehaviour
         _supriseGround = GameObject.FindGameObjectWithTag("SupriseGround");
         _trailRenderer =gameObject.GetComponent<TrailRenderer>();
         _cubeAnimator=cube.GetComponent<Animator>();
+        _bumpAnimator=bump.GetComponent<Animator>();
       
     }
 
@@ -177,6 +178,7 @@ public class PlayerScript : MonoBehaviour
             if (hit.collider.tag=="Bump")
             {
                 _superJump = true;
+                _bumpAnimator.SetTrigger("Bump");
             }
            /* if (transform.forward != hit.collider.transform.right && hit.collider.tag == "Ground" && !_turn)
             {

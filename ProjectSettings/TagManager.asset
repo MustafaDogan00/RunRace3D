@@ -16,6 +16,14 @@ TagManager:
   - ImpostorCube
   - Bump
   - LevelRPanel
+  - Blue
+  - Red
+  - Green
+  - Black
+  - Orange
+  - Rainbow
+  - Gray
+  - Image
   layers:
   - Default
   - TransparentFX

@@ -1982,6 +1982,7 @@ MonoBehaviour:
   jumpForce: 20
   gravity: 25
   verticalVelocity: 0
+  bump: {fileID: 1320522621}
 --- !u!143 &348119318
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2042,8 +2043,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.679943, y: 2.5500371, z: 12.243509}
-  m_Center: {x: 1.2708459, y: -9.5203495, z: 28.884346}
+  m_Size: {x: 16.679943, y: 2.5500371, z: 9.064662}
+  m_Center: {x: 1.2708459, y: -9.5203495, z: 27.294922}
 --- !u!1 &372073574
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,6 +4260,7 @@ MonoBehaviour:
   jumpForce: 20
   gravity: 25
   verticalVelocity: 0
+  bump: {fileID: 1320522621}
 --- !u!143 &930637587
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5060,7 +5062,7 @@ Transform:
   m_GameObject: {fileID: 1080276576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.4, y: 24.68, z: 84.8}
-  m_LocalScale: {x: 1, y: 0.78582287, z: 0.9100001}
+  m_LocalScale: {x: 1, y: 0.42299274, z: 0.9100001}
   m_Children: []
   m_Father: {fileID: 293826443}
   m_RootOrder: 32
@@ -6830,6 +6832,7 @@ MonoBehaviour:
   gravity: 25
   verticalVelocity: 0
   cube: {fileID: 1307689827}
+  bump: {fileID: 1320522621}
   _impostorCube: {fileID: 8788008837096939771}
 --- !u!143 &1233359338
 CharacterController:

@@ -11,6 +11,16 @@ public class MainMenu : MonoBehaviour
 
     public Text currentLevelText;
     public Text nextLevelText;
+
+    private Animator _animator;
+
+
+    private void Awake()
+    {
+      /*  _animator = GameObject.FindGameObjectWithTag("Image").GetComponent<Animator>();
+        _animator.SetTrigger("Flash2");*/
+        
+    }
     void Start()
     {
         currentLevelText.text = PlayerPrefs.GetInt("Level", 1).ToString();
@@ -31,9 +41,14 @@ public class MainMenu : MonoBehaviour
        else
             PlayerPrefs.SetString("PlayerName", inputField.text);
 
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level",1));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level",2));
 
     }
    
-  
+  public void ChangeColor()
+    {
+        SceneManager.LoadScene(1);
+
+
+    }
 }

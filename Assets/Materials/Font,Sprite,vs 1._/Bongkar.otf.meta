@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 2729d4a57a7541e40bc9b8c44f62ceb8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bongkar
+  fontNames:
+  - Bongkar
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 54345cdf2f9925b4a83cfdd930cf6131, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
