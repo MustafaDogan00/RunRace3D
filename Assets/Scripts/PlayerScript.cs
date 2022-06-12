@@ -21,9 +21,12 @@ public class PlayerScript : MonoBehaviour
     public GameObject _impostorCube;
 
     private TrailRenderer _trailRenderer;
+
+    public MeshRenderer playerMesh;
     private void Awake()
     {
         gameObject.name = PlayerPrefs.GetString("PlayerName", "Player");
+        playerMesh = GetComponent<MeshRenderer>();
     }
     void Start()
     {

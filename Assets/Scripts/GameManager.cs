@@ -37,13 +37,11 @@ public class GameManager : MonoBehaviour
 
         for(int i=0;i<runners.Length;i++)
         {
-            sortList.Add(runners[i].GetComponent<Ranking>());
-                
+            sortList.Add(runners[i].GetComponent<Ranking>());                
         }
         
     }
 
-    
     void Update()
     {
         CalculatingRank();
@@ -93,8 +91,6 @@ public class GameManager : MonoBehaviour
                   
                 }
                 break;
-
-
         }
 
         if (pass >= ((float)runners.Length)/2)

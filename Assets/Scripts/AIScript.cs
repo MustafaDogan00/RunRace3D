@@ -73,12 +73,9 @@ public class AIScript : MonoBehaviour
         }
 
         if (!_wallSlide)
-        {
-            
+        {        
             gravity = 30;
             verticalVelocity -= gravity * Time.deltaTime;
-
-
         }
         else
         {

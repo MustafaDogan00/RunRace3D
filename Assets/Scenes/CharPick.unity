@@ -1121,7 +1121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 246, y: -25.000061}
+  m_AnchoredPosition: {x: 201, y: -25.000061}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &857941382
@@ -3073,6 +3073,7 @@ GameObject:
   - component: {fileID: 1982660427799763179}
   - component: {fileID: 1982660427799763178}
   - component: {fileID: 1982660427799763180}
+  - component: {fileID: 1982660427799763176}
   m_Layer: 0
   m_Name: 'Player '
   m_TagString: Runners
@@ -3080,6 +3081,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1982660427799763176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1982660427799763175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9817f793f67671d4481102068ba84bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1982660427799763178
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3149,7 +3162,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 427703f6c76761b459e18d9c752d4600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 7966724499412943303, guid: 08f5c6ca1dac9f14091280f04f51399d, type: 3}
 --- !u!1001 &1982660428806596054
 PrefabInstance:
   m_ObjectHideFlags: 0
