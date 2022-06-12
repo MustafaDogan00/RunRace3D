@@ -14,7 +14,7 @@ public class PlayerScript : MonoBehaviour
     private bool _wallSlide;
     private bool _turn,_superJump;
 
-    private Animator _animator;
+    private Animator _animator,_cubeAnimator;
 
     public GameObject cube;
     private GameObject _supriseGround;
@@ -31,6 +31,7 @@ public class PlayerScript : MonoBehaviour
         _animator = transform.GetChild(0).GetComponent<Animator>();
         _supriseGround = GameObject.FindGameObjectWithTag("SupriseGround");
         _trailRenderer =gameObject.GetComponent<TrailRenderer>();
+        _cubeAnimator=cube.GetComponent<Animator>();
       
     }
 
@@ -103,7 +104,7 @@ public class PlayerScript : MonoBehaviour
         if (_superJump)
         {
             _superJump=false;
-            verticalVelocity = jumpForce * 2.5f;
+            verticalVelocity = jumpForce * 3;
             _animator.SetTrigger("Jump");
         }
         if (!_wallSlide)
@@ -133,6 +134,7 @@ public class PlayerScript : MonoBehaviour
         {
             Destroy(other.gameObject);
             _supriseGround.gameObject.SetActive(false);
+            _cubeAnimator.SetTrigger("CubeFalling");
             _impostorCube.gameObject.SetActive(true);
         }
         if (other.gameObject.tag == "ImpostorCube")

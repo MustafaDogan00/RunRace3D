@@ -65,7 +65,7 @@ public class AIScript : MonoBehaviour
         if (_superJump)
         {
             _superJump = false;
-            verticalVelocity = jumpForce * 2.5f;
+            verticalVelocity = jumpForce * 2.995f;
             _animator.SetTrigger("Jump");
         }
 
@@ -103,7 +103,7 @@ public class AIScript : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(transform.position,transform.forward,out hit,10f))
         {
-            Debug.DrawLine(transform.position, hit.point,Color.red);
+            //Debug.DrawLine(transform.position, hit.point);
             if (hit.collider.tag=="Wall")
             {
                 verticalVelocity = jumpForce;
