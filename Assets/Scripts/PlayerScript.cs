@@ -12,7 +12,7 @@ public class PlayerScript : MonoBehaviour
 
     private bool _doubleJump;
     private bool _wallSlide;
-    private bool _turn,_freeFall,_superJump;
+    private bool _turn,_superJump;
 
     private Animator _animator;
 
@@ -49,7 +49,7 @@ public class PlayerScript : MonoBehaviour
     }
 
     
-
+   
     void Update()
     {
         if (GameManager.Instance.finish)
@@ -68,19 +68,21 @@ public class PlayerScript : MonoBehaviour
             _characterController.Move(new Vector3(0, _move.y * Time.deltaTime, 0));
             if (!_animator.GetCurrentAnimatorStateInfo(0).IsName("Dance"))
             {
-                _animator.SetTrigger("Dance" );
+                _animator.SetTrigger("Dance");
                 transform.eulerAngles = Vector3.up * 180;
             }
 
 
             return;
+
         }
+
         if (!GameManager.Instance.start)
         { return; }
         _move = Vector3.zero;
         _move = transform.forward;
 
-        if (_characterController.isGrounded)
+        if (_characterController.isGrounded )
         {
             _wallSlide = false;
             verticalVelocity = 0;
@@ -91,13 +93,12 @@ public class PlayerScript : MonoBehaviour
                 _animator.SetTrigger("Jump");
             }
 
-            if (_turn)
+           /* if (_turn)
             {
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
                 _turn = false;
-                print("euler");
-              
-            }
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);             
+                print("euler");             
+            }*/
         }
         if (_superJump)
         {
@@ -108,15 +109,12 @@ public class PlayerScript : MonoBehaviour
         if (!_wallSlide)
         {
             gravity = 30;
-            verticalVelocity -= gravity * Time.deltaTime;
-           
-
+            verticalVelocity -= gravity * Time.deltaTime;           
         }
         else
         {
             gravity = 15;
-            verticalVelocity -= gravity * Time.deltaTime;
-           
+            verticalVelocity -= gravity * Time.deltaTime;          
         }
         DoubleJump();
 
@@ -136,16 +134,12 @@ public class PlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             _supriseGround.gameObject.SetActive(false);
             _impostorCube.gameObject.SetActive(true);
-            print("coin");
-
-
         }
         if (other.gameObject.tag == "ImpostorCube")
         {
             Destroy(cube);
             StartCoroutine(SpeedBoost());
             _impostorCube.gameObject.SetActive(false);
-            print("cube");
         }
     }
    
@@ -156,18 +150,14 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(8);
         speed = 25;
         _trailRenderer.enabled = false;
-
-
     }
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
        
         if (!_characterController.isGrounded)
         {
-            if (hit.collider.tag == "Wall")
-            {
-
-                //_animator.SetBool("WallSlide",true);
+            if (hit.collider.tag == "Wall" )
+            {          
                if (verticalVelocity <0)
                     _wallSlide = true;
 
@@ -177,10 +167,8 @@ public class PlayerScript : MonoBehaviour
                     transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
                     _wallSlide = false;
                     _animator.SetTrigger("Jump");
-                }
-              
-            }
-           
+                }             
+            }          
         }
         else
         {
@@ -188,21 +176,20 @@ public class PlayerScript : MonoBehaviour
             {
                 _superJump = true;
             }
-          /*  if (transform.forward != hit.collider.transform.forward && hit.collider.tag == "Ground" && !_turn)
+           /* if (transform.forward != hit.collider.transform.right && hit.collider.tag == "Ground" && !_turn)
             {
                 _turn = true;
+                print("turn");
             }*/
             _wallSlide = false;
-
         }
         if (hit.collider.tag == "Slide" && _characterController.isGrounded)
         {
             transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
             verticalVelocity = jumpForce;
-
         }
         else if (hit.collider.tag == "Slide")
-        {
+        {         
             _wallSlide = true;
         }
     }

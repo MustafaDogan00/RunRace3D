@@ -55,10 +55,15 @@ public class UI : MonoBehaviour
     public void LevelPanel()
     {
         inGame.SetActive(false);
-        levelPanel.SetActive(true);
+        StartCoroutine(LevelPanelActive());
         texts[0].text = PlayerPrefs.GetInt("Level", 1)-1+"";
         texts[1].text = PlayerPrefs.GetInt("Level", 1).ToString();
         fill.sprite = orange;
+    }
+    IEnumerator LevelPanelActive()
+    {
+        yield return new WaitForSeconds(1);
+        levelPanel.SetActive(true);
     }
     public void LevelRPanel()
     {
