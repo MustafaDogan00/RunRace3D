@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
 
     public Vector3 offset;
    
-    void Awake()
+    void Start()
     {
         _player = GameObject.Find(PlayerPrefs.GetString("PlayerName","Player")).transform;
     }

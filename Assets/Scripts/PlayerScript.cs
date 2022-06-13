@@ -16,12 +16,12 @@ public class PlayerScript : MonoBehaviour
 
     private Animator _animator,_cubeAnimator,_bumpAnimator;
 
-    public GameObject cube,bump;
+    public GameObject cube, impostorCube,bump;
     private GameObject _supriseGround;
-    public GameObject _impostorCube;
-
+   
     private TrailRenderer _trailRenderer;
 
+    [HideInInspector]
     public MeshRenderer playerMesh;
     private void Awake()
     {
@@ -139,13 +139,13 @@ public class PlayerScript : MonoBehaviour
             Destroy(other.gameObject);
             _supriseGround.gameObject.SetActive(false);
             _cubeAnimator.SetTrigger("CubeFalling");
-            _impostorCube.gameObject.SetActive(true);
+            impostorCube.gameObject.SetActive(true);
         }
         if (other.gameObject.tag == "ImpostorCube")
         {
             Destroy(cube);
             StartCoroutine(SpeedBoost());
-            _impostorCube.gameObject.SetActive(false);
+            impostorCube.gameObject.SetActive(false);
         }
     }
    

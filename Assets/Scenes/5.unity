@@ -6388,8 +6388,9 @@ MonoBehaviour:
   gravity: 25
   verticalVelocity: 0
   cube: {fileID: 1307689827}
+  impostorCube: {fileID: 0}
   bump: {fileID: 871229966}
-  _impostorCube: {fileID: 8788008837096939771}
+  playerMesh: {fileID: 0}
 --- !u!143 &1233359338
 CharacterController:
   m_ObjectHideFlags: 0

@@ -1230,8 +1230,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 13.984205, y: 2.5885286, z: 108.297646}
-  m_Center: {x: -0.8312895, y: -0.38919687, z: -17.839499}
+  m_Size: {x: 13.984205, y: 2.6339083, z: 103.515114}
+  m_Center: {x: -0.8312894, y: -0.36650705, z: -20.230778}
 --- !u!1 &458203073
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,8 +2176,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 15.688718, y: 1.6522732, z: 29.497522}
-  m_Center: {x: 0.020962747, y: -0.8573244, z: 17.907726}
+  m_Size: {x: 15.688718, y: 1.6522732, z: 29.75497}
+  m_Center: {x: 0.020962747, y: -0.8573244, z: 17.779003}
 --- !u!1 &804739259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,8 +4173,9 @@ MonoBehaviour:
   gravity: 25
   verticalVelocity: 0
   cube: {fileID: 1733651756}
+  impostorCube: {fileID: 0}
   bump: {fileID: 1537812883603878939, guid: 098b8488df510a941974ad584aa8f7e3, type: 3}
-  _impostorCube: {fileID: 590303915}
+  playerMesh: {fileID: 0}
 --- !u!143 &1233359338
 CharacterController:
   m_ObjectHideFlags: 0
