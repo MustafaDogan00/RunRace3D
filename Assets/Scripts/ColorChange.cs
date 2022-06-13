@@ -9,63 +9,114 @@ public class ColorChange : MonoBehaviour
 
     private Animator _animator;
 
-    private MeshRenderer _playerMesh;
+    public Material _material;
 
     void Start()
     {
        
         _meshRenderer = GetComponent<MeshRenderer>();
         _animator = GameObject.FindGameObjectWithTag("Image").GetComponent<Animator>();
-       FindObjectOfType<PlayerScript>().playerMesh = _playerMesh;
-    }
-    private void Update()
-    {
-        _playerMesh.material.color=_meshRenderer.material.color;
+      
+     
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag=="Blue")
+
+        switch (other.gameObject.tag)
         {
-            _meshRenderer.sharedMaterial.color = Color.blue;
-            _animator.SetTrigger("Flash");
-            StartCoroutine(Flash());
-           
+
+            case "Blue":
+                _meshRenderer.sharedMaterial.color = Color.blue;
+                _animator.SetTrigger("Flash");
+                StartCoroutine(Flash());
+                _material.color = Color.blue;
+           break;
+
+            case "Red":
+                _meshRenderer.sharedMaterial.color = Color.red;
+                _animator.SetTrigger("Flash");
+                StartCoroutine(Flash());
+                _material.color = Color.red;
+           break;
+
+            case "Green":
+                _meshRenderer.sharedMaterial.color = Color.green;
+                _animator.SetTrigger("Flash");
+                StartCoroutine(Flash());
+                _material.color = Color.green;
+            break;
+
+            case "Black":
+                _meshRenderer.sharedMaterial.color = Color.black;
+                _animator.SetTrigger("Flash");
+                StartCoroutine(Flash());
+                _material.color = Color.black;
+                break;
+
+            case "Orange":
+                _meshRenderer.sharedMaterial.color = Color.yellow;
+                _animator.SetTrigger("Flash");
+                StartCoroutine(Flash());
+                _material.color = Color.yellow;
+                break;
+
+            case "Gray":
+                _meshRenderer.sharedMaterial.color = Color.gray;
+                _animator.SetTrigger("Flash");
+                StartCoroutine(Flash());
+                _material.color = Color.gray;
+                break;
 
         }
-        if (other.gameObject.tag == "Red")
-        {
-            _meshRenderer.sharedMaterial.color = Color.red;
-            _animator.SetTrigger("Flash");
-            StartCoroutine(Flash());
-           
-        }
-        if (other.gameObject.tag == "Green")
-        {
-            _meshRenderer.sharedMaterial.color = Color.green;
-            _animator.SetTrigger("Flash");
-            StartCoroutine(Flash());
-         
-        }
-        if (other.gameObject.tag == "Black")
-        {
-            _meshRenderer.sharedMaterial.color = Color.black;
-            _animator.SetTrigger("Flash");
-            StartCoroutine(Flash());
-           
-        }
-        if (other.gameObject.tag == "Orange")
-        {
-            _meshRenderer.sharedMaterial.color = Color.yellow;
-            _animator.SetTrigger("Flash");
-            StartCoroutine(Flash());
-          
-        }
-        if (other.gameObject.tag == "Gray")
-        {
-            _meshRenderer.sharedMaterial.color = Color.gray;
-            _animator.SetTrigger("Flash");
-            StartCoroutine(Flash());
-        }
+
+
+
+
+        //if (other.gameObject.tag=="Blue")
+        //{
+        //    _meshRenderer.sharedMaterial.color = Color.blue;
+        //    _animator.SetTrigger("Flash");
+        //    StartCoroutine(Flash());
+        //   _material.color = Color.blue;
+
+        //}
+        //if (other.gameObject.tag == "Red")
+        //{
+        //    _meshRenderer.sharedMaterial.color = Color.red;
+        //    _animator.SetTrigger("Flash");
+        //    StartCoroutine(Flash());
+        //    _material.color = Color.red;
+        //}
+        //if (other.gameObject.tag == "Green")
+        //{
+        //    _meshRenderer.sharedMaterial.color = Color.green;
+        //    _animator.SetTrigger("Flash");
+        //    StartCoroutine(Flash());
+        //    _material.color = Color.green;
+
+        //}
+    //    if (other.gameObject.tag == "Black")
+    //    {
+    //        _meshRenderer.sharedMaterial.color = Color.black;
+    //        _animator.SetTrigger("Flash");
+    //        StartCoroutine(Flash());
+    //        _material.color = Color.black;
+
+    //    }
+    //    if (other.gameObject.tag == "Orange")
+    //    {
+    //        _meshRenderer.sharedMaterial.color = Color.yellow;
+    //        _animator.SetTrigger("Flash");
+    //        StartCoroutine(Flash());
+    //        _material.color = Color.yellow;
+    //    }
+    //    if (other.gameObject.tag == "Gray")
+    //    {
+    //        _meshRenderer.sharedMaterial.color = Color.gray;
+    //        _animator.SetTrigger("Flash");
+    //        StartCoroutine(Flash());
+    //        _material.color = Color.gray;
+    //    }
        
     }
    IEnumerator Flash()

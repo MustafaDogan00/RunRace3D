@@ -16,15 +16,11 @@ public class UI : MonoBehaviour
     public Image fill,fillR;
 
     public Sprite orange, gray;
-  
-
 
     void Awake()
     {
         Instance = this;
         StartCoroutine(Timer());
-     
-
     }
     private void Start()
     {
@@ -47,8 +43,6 @@ public class UI : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         timerText.gameObject.SetActive(false);
         GameManager.Instance.start = true;
-
-
     }
 
    
@@ -72,7 +66,6 @@ public class UI : MonoBehaviour
         texts[2].text = PlayerPrefs.GetInt("Level", 1).ToString();
         texts[3].text = PlayerPrefs.GetInt("Level", 1) + 1 + "";
         fillR.sprite = gray;
-
     }
 
   
@@ -80,7 +73,6 @@ public class UI : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         levelRPanel.SetActive(false);
-
     }
 
     public void NextLevelButton()

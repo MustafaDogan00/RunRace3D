@@ -23,6 +23,10 @@ public class AIScript : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _animator = transform.GetChild(0).GetComponent<Animator>();
         gameObject.name =AIName.Name[Random.Range(0,AIName.Name.Length)];
+        if (true)
+        {
+
+        }
         _bumpAnimator=bump.GetComponent<Animator>();
     }
 
@@ -64,6 +68,11 @@ public class AIScript : MonoBehaviour
             _wallSlide = false;
             _jump = true;
             Raycasting();
+            if (_turn)
+            {
+                _turn = false;
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);
+            }
         }
         if (_superJump)
         {
@@ -109,11 +118,8 @@ public class AIScript : MonoBehaviour
                 verticalVelocity = jumpForce;
                 _animator.SetTrigger("Jump");
                
-            }
-           
+            }         
         }
-
-
     }
 
     IEnumerator LateJump(float time)
@@ -153,6 +159,21 @@ public class AIScript : MonoBehaviour
         else if(hit.collider.tag == "Slide")
         {
             _wallSlide=true;
+        }
+
+
+        if (_characterController.isGrounded)
+        {
+            if (hit.collider.name == "Ground" && !_turn)
+            {
+                if (transform.localEulerAngles.y <= 89 || transform.localEulerAngles.y >= 91)
+                {
+                    _turn = true;
+                }
+
+            }
+
+
         }
         if (hit.collider.tag =="Bump")
         {

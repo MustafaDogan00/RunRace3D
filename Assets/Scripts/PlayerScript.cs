@@ -20,13 +20,10 @@ public class PlayerScript : MonoBehaviour
     private GameObject _supriseGround;
    
     private TrailRenderer _trailRenderer;
-
-    [HideInInspector]
-    public MeshRenderer playerMesh;
+  
     private void Awake()
     {
         gameObject.name = PlayerPrefs.GetString("PlayerName", "Player");
-        playerMesh = GetComponent<MeshRenderer>();
     }
     void Start()
     {
@@ -36,7 +33,9 @@ public class PlayerScript : MonoBehaviour
         _trailRenderer =gameObject.GetComponent<TrailRenderer>();
         _cubeAnimator=cube.GetComponent<Animator>();
         _bumpAnimator=bump.GetComponent<Animator>();
-      
+       
+
+
     }
 
     void DoubleJump()
@@ -98,12 +97,11 @@ public class PlayerScript : MonoBehaviour
                 _animator.SetTrigger("Jump");
             }
 
-           /* if (_turn)
+            if (_turn)
             {
                 _turn = false;
-                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);             
-                print("euler");             
-            }*/
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y + 180, transform.eulerAngles.z);                       
+            }
         }
         if (_superJump)
         {
@@ -183,11 +181,14 @@ public class PlayerScript : MonoBehaviour
                 _superJump = true;
                 _bumpAnimator.SetTrigger("Bump");
             }
-           /* if (transform.forward != hit.collider.transform.right && hit.collider.tag == "Ground" && !_turn)
+            if (hit.collider.name == "Ground" && !_turn)
             {
-                _turn = true;
-                print("turn");
-            }*/
+                if (transform.localEulerAngles.y<=89 || transform.localEulerAngles.y>= 91)
+                {
+                    _turn = true;
+                }
+
+            }
             _wallSlide = false;
         }
         if (hit.collider.tag == "Slide" && _characterController.isGrounded)

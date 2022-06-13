@@ -18,7 +18,7 @@ public class ColorPickController : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.Translate(0,0,1*Time.deltaTime*speed);
+            transform.Translate(Vector3.forward*Time.deltaTime*speed);
             _animator.SetBool("Grounded",true);
         }
         if (Input.GetKey(KeyCode.S))
