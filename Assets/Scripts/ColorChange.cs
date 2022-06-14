@@ -11,6 +11,8 @@ public class ColorChange : MonoBehaviour
 
     public Material _material;
 
+    [SerializeField] private Color _color;
+
     void Start()
     {
        
@@ -29,7 +31,7 @@ public class ColorChange : MonoBehaviour
                 _meshRenderer.sharedMaterial.color = Color.blue;
                 _animator.SetTrigger("Flash");
                 StartCoroutine(Flash());
-                _material.color = Color.blue;
+                _material.color = _color;
            break;
 
             case "Red":
