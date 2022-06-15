@@ -19,22 +19,18 @@ public class ColorChange : MonoBehaviour
         _cameraMain=Camera.main;
         CameraPos();
     }
-    private void Update()
-    {
-        
-    }
-
-
     void CameraPos()
     {
         _currentPlayer = PlayerPrefs.GetInt("PlayerColor");
-
         _cameraMain.transform.position = new Vector3(_cameraMain.transform.position.x+(_currentPlayer*selectionPos), _cameraMain.transform.position.y, _cameraMain.transform.position.z);
+
     }
     public void Play()
     {
-        SceneManager.LoadScene("2");
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level", 2));
+
         PlayerPrefs.SetInt("PlayerColor",_currentPlayer);
+        PlayerPrefs.SetString("PlayerName", "Player");
 
     }
     public void Next()

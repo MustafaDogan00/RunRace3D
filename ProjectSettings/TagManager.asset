@@ -25,6 +25,7 @@ TagManager:
   - Gray
   - Image
   - PlayerColor
+  - AIParent
   layers:
   - Default
   - TransparentFX

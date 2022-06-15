@@ -15,17 +15,19 @@ public class AIScript : MonoBehaviour
     private bool _turn,_superJump;
 
     public GameObject bump;
+    private GameObject _runners;
 
     private Animator _animator,_bumpAnimator;
 
     void Start()
     {
+        _runners = GameObject.FindGameObjectWithTag("AIParent");
         _characterController = GetComponent<CharacterController>();
         _animator = transform.GetChild(0).GetComponent<Animator>();
         gameObject.name =AIName.Name[Random.Range(0,AIName.Name.Length)];
-        if (true)
+        if (_runners.transform.GetChild(0).name== _runners.transform.GetChild(1).name)
         {
-
+            gameObject.name = AIName.Name[Random.Range(0, AIName.Name.Length)];
         }
         _bumpAnimator=bump.GetComponent<Animator>();
     }

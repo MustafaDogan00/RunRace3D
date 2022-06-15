@@ -13,7 +13,6 @@ public class InGameUI : MonoBehaviour
 
     public string a,b,c;
 
-
     void Update()
     {
         myText[0].text = a;
@@ -21,6 +20,7 @@ public class InGameUI : MonoBehaviour
         myText[2].text = c;
 
        
+
 
     }
 }

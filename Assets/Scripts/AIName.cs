@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class AIName : MonoBehaviour
 {
-    public static string[] Name = { "Boss", "Speed", "Turbo", "Bolt", "Superb", "Rapid", "Flash" };
+    public static string[] Name = { "Boss", "Speed", "A-Train", "Superb","Flash","Frank","Castle","Gustavo","Fring","Lalo","Verona","Cole","Ellie"};
    
 }
