@@ -32,7 +32,7 @@ public class MainMenu : MonoBehaviour
        else
             PlayerPrefs.SetString("PlayerName", inputField.text);
 
-        SceneManager.LoadScene(PlayerPrefs.GetInt("Level",2));
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level",1));
     }
    
   public void ChangeColor()

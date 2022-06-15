@@ -24,6 +24,7 @@ TagManager:
   - Rainbow
   - Gray
   - Image
+  - PlayerColor
   layers:
   - Default
   - TransparentFX

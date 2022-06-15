@@ -61,6 +61,7 @@ public class GameManager : MonoBehaviour
                 _rankingScript.a = sortList[2].name;
                 _rankingScript.b= sortList[1].name;
                 _rankingScript.c= sortList[0].name;
+              
                 crown.gameObject.transform.SetParent(sortList[2].gameObject.transform);
 
                 break;

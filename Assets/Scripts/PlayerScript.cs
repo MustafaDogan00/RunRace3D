@@ -20,10 +20,16 @@ public class PlayerScript : MonoBehaviour
     private GameObject _supriseGround;
    
     private TrailRenderer _trailRenderer;
+
+    private SkinnedMeshRenderer _playerColor;
+
+    public Material[] playerColors;
   
     private void Awake()
     {
         gameObject.name = PlayerPrefs.GetString("PlayerName", "Player");
+        _playerColor = GameObject.FindGameObjectWithTag("PlayerColor").GetComponent<SkinnedMeshRenderer>();
+        _playerColor.material = playerColors[PlayerPrefs.GetInt("PlayerColor", 0)];
     }
     void Start()
     {
@@ -33,7 +39,7 @@ public class PlayerScript : MonoBehaviour
         _trailRenderer =gameObject.GetComponent<TrailRenderer>();
         _cubeAnimator=cube.GetComponent<Animator>();
         _bumpAnimator=bump.GetComponent<Animator>();
-       
+      
 
 
     }

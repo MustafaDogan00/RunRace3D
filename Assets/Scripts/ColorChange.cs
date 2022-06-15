@@ -5,125 +5,79 @@ using UnityEngine.SceneManagement;
 
 public class ColorChange : MonoBehaviour
 {
-    private MeshRenderer _meshRenderer;
+    private Camera _cameraMain;
 
-    private Animator _animator;
+    private int _currentPlayer=0;
 
-    public Material _material;
+    public float speed = .5f;
+    public float selectionPos = 13;
 
-    [SerializeField] private Color _color;
+   [SerializeField] private GameObject _charParent;
 
-    void Start()
+     void Awake()
     {
-       
-        _meshRenderer = GetComponent<MeshRenderer>();
-        _animator = GameObject.FindGameObjectWithTag("Image").GetComponent<Animator>();
-      
-     
+        _cameraMain=Camera.main;
+        CameraPos();
     }
-    private void OnTriggerEnter(Collider other)
+    private void Update()
     {
+        
+    }
 
-        switch (other.gameObject.tag)
+
+    void CameraPos()
+    {
+        _currentPlayer = PlayerPrefs.GetInt("PlayerColor");
+
+        _cameraMain.transform.position = new Vector3(_cameraMain.transform.position.x+(_currentPlayer*selectionPos), _cameraMain.transform.position.y, _cameraMain.transform.position.z);
+    }
+    public void Play()
+    {
+        SceneManager.LoadScene("2");
+        PlayerPrefs.SetInt("PlayerColor",_currentPlayer);
+
+    }
+    public void Next()
+    {
+        if (_currentPlayer<_charParent.transform.childCount-1)
+        {
+            _currentPlayer++;
+            StartCoroutine(MoveToNext());
+           
+        }
+    }
+
+   public void Prev()
+    {
+        if (_currentPlayer >0)
+        {
+            _currentPlayer--;
+            StartCoroutine(MoveToPrev());
+        }
+    }
+
+    IEnumerator MoveToNext()
+    {
+        Vector3 tempPos = new Vector3(_cameraMain.transform.position.x + selectionPos, _cameraMain.transform.position.y, _cameraMain.transform.position.z);
+        while (_cameraMain.transform.position.x < tempPos.x)
         {
 
-            case "Blue":
-                _meshRenderer.sharedMaterial.color = Color.blue;
-                _animator.SetTrigger("Flash");
-                StartCoroutine(Flash());
-                _material.color = _color;
-           break;
-
-            case "Red":
-                _meshRenderer.sharedMaterial.color = Color.red;
-                _animator.SetTrigger("Flash");
-                StartCoroutine(Flash());
-                _material.color = Color.red;
-           break;
-
-            case "Green":
-                _meshRenderer.sharedMaterial.color = Color.green;
-                _animator.SetTrigger("Flash");
-                StartCoroutine(Flash());
-                _material.color = Color.green;
-            break;
-
-            case "Black":
-                _meshRenderer.sharedMaterial.color = Color.black;
-                _animator.SetTrigger("Flash");
-                StartCoroutine(Flash());
-                _material.color = Color.black;
-                break;
-
-            case "Orange":
-                _meshRenderer.sharedMaterial.color = Color.yellow;
-                _animator.SetTrigger("Flash");
-                StartCoroutine(Flash());
-                _material.color = Color.yellow;
-                break;
-
-            case "Gray":
-                _meshRenderer.sharedMaterial.color = Color.gray;
-                _animator.SetTrigger("Flash");
-                StartCoroutine(Flash());
-                _material.color = Color.gray;
-                break;
-
+            _cameraMain.transform.position = Vector3.MoveTowards(_cameraMain.transform.position, tempPos, speed);
+            yield return new WaitForSeconds(speed * Time.deltaTime);
         }
 
-
-
-
-        //if (other.gameObject.tag=="Blue")
-        //{
-        //    _meshRenderer.sharedMaterial.color = Color.blue;
-        //    _animator.SetTrigger("Flash");
-        //    StartCoroutine(Flash());
-        //   _material.color = Color.blue;
-
-        //}
-        //if (other.gameObject.tag == "Red")
-        //{
-        //    _meshRenderer.sharedMaterial.color = Color.red;
-        //    _animator.SetTrigger("Flash");
-        //    StartCoroutine(Flash());
-        //    _material.color = Color.red;
-        //}
-        //if (other.gameObject.tag == "Green")
-        //{
-        //    _meshRenderer.sharedMaterial.color = Color.green;
-        //    _animator.SetTrigger("Flash");
-        //    StartCoroutine(Flash());
-        //    _material.color = Color.green;
-
-        //}
-    //    if (other.gameObject.tag == "Black")
-    //    {
-    //        _meshRenderer.sharedMaterial.color = Color.black;
-    //        _animator.SetTrigger("Flash");
-    //        StartCoroutine(Flash());
-    //        _material.color = Color.black;
-
-    //    }
-    //    if (other.gameObject.tag == "Orange")
-    //    {
-    //        _meshRenderer.sharedMaterial.color = Color.yellow;
-    //        _animator.SetTrigger("Flash");
-    //        StartCoroutine(Flash());
-    //        _material.color = Color.yellow;
-    //    }
-    //    if (other.gameObject.tag == "Gray")
-    //    {
-    //        _meshRenderer.sharedMaterial.color = Color.gray;
-    //        _animator.SetTrigger("Flash");
-    //        StartCoroutine(Flash());
-    //        _material.color = Color.gray;
-    //    }
-       
+        yield return null;
     }
-   IEnumerator Flash()
+    IEnumerator MoveToPrev()
     {
-        yield return new WaitForSeconds(1);
-        SceneManager.LoadScene(0);
+        Vector3 tempPos = new Vector3(_cameraMain.transform.position.x -selectionPos, _cameraMain.transform.position.y, _cameraMain.transform.position.z);
+        while (_cameraMain.transform.position.x > tempPos.x)
+        {
+
+            _cameraMain.transform.position = Vector3.MoveTowards(_cameraMain.transform.position, tempPos, speed);
+            yield return new WaitForSeconds(speed * Time.deltaTime);
+        }
+
+        yield return null;
     }
 }
